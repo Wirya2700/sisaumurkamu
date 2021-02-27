@@ -1,3 +1,4 @@
+var scrollPos;
 const capture = () => {
   const body = document.querySelector('#areaSaveImage');
   body.id = 'capture';
