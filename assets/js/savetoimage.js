@@ -3,8 +3,9 @@ const capture = () => {
   const body = document.querySelector('#areaSaveImage');
   body.id = 'capture';
   html2canvas(document.querySelector("#capture")).then(canvas => {
+	scrollPos = document.body.scrollTop;
 	document.body.appendChild(canvas);
-	  window.scrollTo(0,scrollPos);
+  	window.scrollTo(0,scrollPos);
   }).then(() => {
 	var canvas = document.querySelector('canvas');
 	canvas.style.display = 'none';
