@@ -1,11 +1,13 @@
-var scrollPos;
 const capture = () => {
-  const body = document.querySelector('#areaSaveImage');
+  const body = document.querySelector('#capture');
   body.id = 'capture';
-  html2canvas(document.querySelector("#capture")).then(canvas => {
-	scrollPos = document.body.scrollTop;
+  var options = {
+    scrollX: 0,
+    scrollY: -window.scrollY
+	}
+  
+  html2canvas(document.querySelector("#capture"),options).then(canvas => {
 	document.body.appendChild(canvas);
-  	window.scrollTo(0,scrollPos);
   }).then(() => {
 	var canvas = document.querySelector('canvas');
 	canvas.style.display = 'none';
