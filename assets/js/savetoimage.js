@@ -3,6 +3,7 @@ const capture = () => {
   body.id = 'capture';
   html2canvas(document.querySelector("#capture")).then(canvas => {
 	document.body.appendChild(canvas);
+	  window.scrollTo(0,scrollPos);
   }).then(() => {
 	var canvas = document.querySelector('canvas');
 	canvas.style.display = 'none';
