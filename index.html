@@ -1,0 +1,25 @@
+---
+layout: default
+---
+
+<div class="container">
+	<h2 class="ms-3 text-end pt-2"><a href="about.html"><i>me</i></a></h2>
+	<center>
+		<div class="wrapper mt-5 ms-4 me-4">
+			<h1 class="h-title mb-4">Sisa <br />Umur Kamu</h1>
+
+			<form novalidate class="needs-validation" method="get" action="result.html">
+				<div class="form-group mb-4">
+					<input type="date" class="form-control form-control-lg" name="birthDay" id="birthDay" placeholder="tanggal lahir kamu" required/>
+					<div class="invalid-feedback">
+						Masukan tanggal lahir dulu donk...
+					</div>
+				</div>
+				<button type="submit" class="btn btn-lg btn-warning" id="btnHitung">Hitung</button>
+			</form>
+
+		</div>
+	<center>
+</div>
+
+<script src="assets/js/form-validation.js"></script>

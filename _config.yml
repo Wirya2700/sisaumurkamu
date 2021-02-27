@@ -1,0 +1,26 @@
+title: Sisa Umur Kamu
+email: wirya2700@gmail.com
+description: >- # this means to ignore newlines until "baseurl:"
+  Cek sisa umur kamu, hanyu untuk kesenangan saja wkwk...
+baseurl: "" # the subpath of your site, e.g. /blog
+url: "" # the base hostname & protocol for your site, e.g. http://example.com
+twitter_username: wiryaalmustofa
+github_username:  wirya2700
+
+# Build settings
+markdown: kramdown
+#theme: minima
+plugins:
+  - jekyll-feed
+  - jekyll-minifier
+  - jekyll-seo-tag
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - .idea/
+  - .gitignore
+  - README.md
+  
+sass:
+    style: compressed

@@ -1,0 +1,135 @@
+---
+layout: default
+title: About
+---
+
+<div class="container">
+	<div class="row">
+		<h2 class="pt-2 col-6"><a href="index.html"><</a></h2>
+		<h2 class="pt-2 text-end col-6"><i><a href="about.html">me</a></i></h2>
+	</div>
+	<div class="row">
+		<div class="col-12">
+			<center>
+				<h4 class="mt-5">cek sisa umur kamu, hanya untuk kesenangan saja wkwk...</h4>
+				<div class="wrapper mt-5 ms-4 me-4">
+					<form novalidate class="needs-validation mt-5">
+						<div class="form-group mb-4">
+							<h3>Nanti aku follow kamu</h3>
+							
+							<div id="notif" >
+								<div class="alert alert-primary alert-dismissible fade show" role="alert" style="display:none">
+								  berhasil disimpan
+								  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+								</div>
+							</div>
+							
+							<input type="text" class="form-control form-control-lg" name="txtUserName" id="txtUserName" placeholder="masukan nama instagram kamu..." required/>
+							<div class="invalid-feedback">
+								Diisi dulu donk...
+							</div>
+						</div>
+						<button type="submit" class="btn btn-lg btn-warning" id="btnOk">Ok</button>
+					</form>
+					
+					<div class="row mt-5" id="userElement">
+						<h4 class="col-12">Thanks to: <span class="spinner-grow spinner-grow-sm align-middle" role="status" aria-hidden="true" id="userElementLoading"></span></h4>
+					</div>
+				</div>
+			</center>
+	
+		</div>
+	</div>
+</div>
+
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-app.js"></script>
+
+<script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-database.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-analytics.js"></script>
+
+<script src="assets/js/firebase-database-collection.js"></script>
+<script>
+	(function () {
+		  'use strict'
+
+		  // Fetch all the forms we want to apply custom Bootstrap validation styles to
+		  var forms = document.querySelectorAll('.needs-validation')
+
+		  // Loop over them and prevent submission
+		  Array.prototype.slice.call(forms)
+			.forEach(function (form) {
+			  form.addEventListener('submit', function (event) {
+				if (!form.checkValidity()) {
+				  event.preventDefault()
+				  event.stopPropagation()
+				}else{
+					event.preventDefault();
+					writeUserData($("#txtUserName").val());
+				}
+				form.classList.add('was-validated')
+			  }, false)
+			})
+		})()
+		
+	// Your web app's Firebase configuration
+	// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+	var firebaseConfig = {
+		apiKey: "AIzaSyBfotXwv8ktERkHlB0Xbo1NqoEVSfFyajA",
+		authDomain: "sisa-umur.firebaseapp.com",
+		databaseURL: "https://sisa-umur-default-rtdb.firebaseio.com",
+		projectId: "sisa-umur",
+		storageBucket: "sisa-umur.appspot.com",
+		messagingSenderId: "205123038477",
+		appId: "1:205123038477:web:62909e90f8e2684c6a9444",
+		measurementId: "G-49DTVJ5TBW"
+	};
+
+	// Initialize Firebase
+	firebase.initializeApp(firebaseConfig);
+	firebase.analytics();
+
+	// Get a reference to the database service
+	var database = firebase.database();
+	  
+	function writeUserData(account) {
+	  buttonLoading("btnOk");
+	  var usersRef = firebase.database().ref('users/' + String(Date.now()));
+	  
+	  usersRef.set({
+		username:account,
+		inputdate:String(new Date(Date.now()))
+	  }, (error) => {
+		  if (error) {
+			showMessage("notif","gagak disimpan cek internetnya bro...","danger");
+		  } else {
+			 appendElement("userElement",account);
+			 showMessage("notif","berhasil disimpan","primary");
+		  }
+		  
+		  buttonLoadingReset("btnOk");
+		});
+	}
+	
+	function fetchAllData(){
+		firebase.database().ref("users").once('value',function(snapshot){
+			snapshot.forEach(
+				function(childSnapshot){
+					let userName = childSnapshot.val().username;
+					
+					appendElement("userElement",userName);
+				}
+			)
+		});
+		
+		$("#userElementLoading").hide();
+	}
+	
+	$(document).ready(function () {
+		fetchAllData();
+	});
+</script>

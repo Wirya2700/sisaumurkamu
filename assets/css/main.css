@@ -1,0 +1,63 @@
+body
+{
+	font-family:'Chewy', cursive!important;
+	background-color:#ecf4f3!important;
+}
+
+.container{
+	max-width:400px!important;
+	padding-bottom:30px!important;
+}
+
+.wrapper{
+	max-width:400px;
+}
+
+.h-title{
+	font-weight:bold!important;
+	letter-spacing: 2.5px;
+	color:#213e3b!important;
+}
+
+h2, h3,h5, .h-result{
+	color:#03c1ad!important;
+}
+
+.wrapper .mess{
+	color:#03c1ad!important;
+}
+
+.wrapper p{
+	color:#03c1ad!important;
+}
+
+h4{
+	color:#213e3b!important;
+}
+
+.wrapper img{
+	height:180px;
+	width:auto;
+}
+
+a {
+  color: #213e3b!important;
+  text-decoration: underline!important;
+  cursor:pointer!important;
+}
+a:hover {
+  color: #213e3b!important;
+}
+
+a:not([href]):not([class]), a:not([href]):not([class]):hover {
+  color: inherit;
+  text-decoration: none;
+}
+
+.s-user {
+    display: inline-block;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden !important;
+    text-overflow: ellipsis;
+}
